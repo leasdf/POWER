@@ -40,44 +40,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 @pyrogram.Client.on_message(filters.private & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
-    if update.from_user.id not in Config.AUTH_USERS:
-        await bot.send_messages(
-            chat_id=update.chat.id,
-            text="Buy The Subscriptions From @LegendBoy_XD To Use This Command",
-            reply_to_message_id=update.message_id,
-        )
-        return
     user_idss = update.from_user.id
-    if user_idss in Config.BANNED_USERS:
-        await update.reply_text("You are B A N N E D 🤣🤣🤣🤣 Contact @LegendBoy_XD")
-        return
-    update_channel = Config.UPDATE_CHANNEL
-    if update_channel:
-        try:
-            user = await bot.get_chat_member(update_channel, update.chat.id)
-            if user.status == "kicked":
-                await update.reply_text("🤭 Sorry Dude, You are **B A N N E D 🤣🤣🤣**")
-                return
-        except UserNotParticipant:
-            await update.reply_text(
-                text="**Join My Updates Channel To Use Me 😎 🤭**",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="Join My Updates Channel",
-                                url=f"https://t.me/{update_channel}",
-                            )
-                        ]
-                    ]
-                ),
-            )
-            return
-        except Exception:
-            await update.reply_text(
-                "Something Wrong. Contact my Support Group :- @LegendBot_OP"
-            )
-            return
     idd_m = " " + str(update.message_id)
     no_sz = "N/A" + idd_m
     logger.info(update.from_user)
@@ -85,7 +48,9 @@ async def echo(bot, update):
     youtube_dl_username = None
     youtube_dl_password = None
     file_name = None
-    if "|" in url:
+    if "d1d34p8vz63oiq" in url:
+        url = url.replace("d1d34p8vz63oiq", "d3nzo6itypaz07")
+    elif "|" in url:
         url_parts = url.split("|")
         if len(url_parts) == 2:
             url = url_parts[0]
