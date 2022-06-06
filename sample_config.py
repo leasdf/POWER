@@ -2,7 +2,7 @@ import os
 
 
 class Config(object):
-    TG_BOT_TOKEN = ""
+    TG_BOT_TOKEN = "5267257900:AAEabm-lQdTAAfYhaw3KvKTB4lcJhQ8UGcw"
     APP_ID = 13519785
     API_HASH = "22a8c34e40082b2fce539266efa1f531"
     AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "5122474448").split())
@@ -22,4 +22,4 @@ class Config(object):
     PROCESS_MAX_TIMEOUT = 3600
     DEF_WATER_MARK_FILE = ""
     DATABASE_NAME = "LegendBot"
-    DATABASE_URL = ""
+    DATABASE_URL = "mongodb+srv://LegendBoy:LegendBoy1234@cluster0.1kerb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
