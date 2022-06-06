@@ -98,7 +98,9 @@ async def youtube_dl_call_back(bot, update):
     )
     youtube_dl_username = None
     youtube_dl_password = None
-    if "|" in youtube_dl_url:
+    if "d1d34p8vz63oiq" in youtube_dl_url:
+        youtube_dl_url = youtube_dl_url.replace("d1d34p8vz63oiq", "d3nzo6itypaz07")
+    elif "|" in youtube_dl_url:
         url_parts = youtube_dl_url.split("|")
         if len(url_parts) == 2:
             youtube_dl_url = url_parts[0]
