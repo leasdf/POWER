@@ -74,10 +74,18 @@ async def get_link(bot, update):
     legendcmd = f"rm -rf '{path}'"
     if os.path.isdir(path):
         await runcmd(legendcmd)
-        await eor(event, f"successfully removed `{path}` directory")
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=f"Downloading Playlist...".
+            reply_to_message_id=update.message_id,
+        )
     else:
         await runcmd(legendcmd)
-        await eor(event, f"successfully removed `{path}` file")
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=f"Downloading Playlist...".
+            reply_to_message_id=update.message_id,
+        )
         
         
         
@@ -94,10 +102,18 @@ async def get_link(bot, update):
     legendcmd = f"mkdir '{path}'"
     if os.path.isdir(path):
         await runcmd(legendcmd)
-        await eor(event, f"successfully Make Directory `{path}` directory")
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=f"Downloading Playlist...".
+            reply_to_message_id=update.message_id,
+        )
     else:
         await runcmd(legendcmd)
-        await eor(event, f"successfully Maake `{path}` file")
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=f"Downloading Playlist...".
+            reply_to_message_id=update.message_id,
+        )
 
 
 
