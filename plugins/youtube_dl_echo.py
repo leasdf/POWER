@@ -159,7 +159,7 @@ async def echo(bot, update):
             x_reponse, _ = x_reponse.split("\n")
         response_json = json.loads(x_reponse)
         randem = random_char(5)
-        a = Config.DOWNLOAD_LOCATION + "/" + str(update.message_id) + "/")
+        a = Config.DOWNLOAD_LOCATION + "/" + str(update.message_id) + "/"
         if not os.path.isdir(a):
             os.makedirs(a)
         save_ytdl_json_path = (
