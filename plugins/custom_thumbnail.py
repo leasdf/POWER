@@ -17,7 +17,10 @@ from hachoir.parser import createParser
 from database.database import AddUser, db
 from hachoir.metadata import extractMetadata
 from helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
-
+import asyncio
+import functools
+import shlex
+from typing import Tuple
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -38,10 +41,64 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+from pathlib import Path
 
 # the Strings used for this "thing"
 
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
+
+async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
+    args = shlex.split(cmd)
+    process = await asyncio.create_subprocess_exec(
+        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, stderr = await process.communicate()
+    return (
+        stdout.decode("utf-8", "replace").strip(),
+        stderr.decode("utf-8", "replace").strip(),
+        process.returncode,
+        process.pid,
+    )
+
+
+@pyrogram.Client.on_message(pyrogram.filters.command(["rmv"]))
+async def get_link(bot, update):
+    if update.from_user.id not in Config.AUTH_USERS:
+        await bot.delete_messages(
+            chat_id=update.chat.id, message_ids=update.message_id, revoke=True
+        )
+        return
+    logger.info(update.from_user)
+    tox = update.text
+    path = Path(tox)
+    legendcmd = f"rm -rf '{path}'"
+    if os.path.isdir(path):
+        await runcmd(legendcmd)
+        await eor(event, f"successfully removed `{path}` directory")
+    else:
+        await runcmd(legendcmd)
+        await eor(event, f"successfully removed `{path}` file")
+        
+        
+        
+@pyrogram.Client.on_message(pyrogram.filters.command(["mkdir"]))
+async def get_link(bot, update):
+    if update.from_user.id not in Config.AUTH_USERS:
+        await bot.delete_messages(
+            chat_id=update.chat.id, message_ids=update.message_id, revoke=True
+        )
+        return
+    logger.info(update.from_user)
+    tox = update.text
+    path = Path(tox)
+    legendcmd = f"mkdir '{path}'"
+    if os.path.isdir(path):
+        await runcmd(legendcmd)
+        await eor(event, f"successfully Make Directory `{path}` directory")
+    else:
+        await runcmd(legendcmd)
+        await eor(event, f"successfully Maake `{path}` file")
+
 
 
 @pyrogram.Client.on_message(pyrogram.filters.command(["setthumb"]))
