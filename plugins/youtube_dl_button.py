@@ -18,13 +18,13 @@ from hachoir.metadata import extractMetadata
 # the logging things
 from helper_funcs.ran_text import random_char
 from helper_funcs.help_uploadbot import DownLoadFile
-from plugins.custom_thumbnail import Gthumb01, Gthumb02
+from plugins.custom_thumbnail import Gthumb01, Gthumb02, runcmd
 from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
 from helper_funcs.display_progress import humanbytes, progress_for_pyrogram
 from pyrogram.types import (
     CallbackQuery, InputMediaAudio, InputMediaPhoto, InputMediaVideo,
     InputMediaDocument, InlineKeyboardButton, InlineKeyboardMarkup)
-
+from pathlib import Path
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -437,6 +437,7 @@ async def youtube_dl_call_back(bot, update):
                 shutil.rmtree(tmp_directory_for_each_user)
                 os.remove(download_directory)
                 os.remove(thumbnail)
+                os.remove(tmp_directory_for_each_user)
             except BaseException:
                 pass
             await bot.edit_message_text(
