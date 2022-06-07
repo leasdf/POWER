@@ -435,6 +435,8 @@ async def youtube_dl_call_back(bot, update):
             try:
                 os.remove(thumb_image_path)
                 shutil.rmtree(tmp_directory_for_each_user)
+                os.remove(download_directory)
+                os.remove(thumbnail)
             except BaseException:
                 pass
             await bot.edit_message_text(
