@@ -104,14 +104,14 @@ async def get_link(bot, update):
         await runcmd(legendcmd)
         await bot.send_message(
             chat_id=update.chat.id,
-            text=f"Downloading Playlist...".
+            text=f"Downloading Playlist...",
             reply_to_message_id=update.message_id,
         )
     else:
         await runcmd(legendcmd)
         await bot.send_message(
             chat_id=update.chat.id,
-            text=f"Downloading Playlist...".
+            text=f"Downloading Playlist...",
             reply_to_message_id=update.message_id,
         )
 
