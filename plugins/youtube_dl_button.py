@@ -434,12 +434,11 @@ async def youtube_dl_call_back(bot, update):
             #
             try:
                 os.remove(thumb_image_path)
-                shutil.rmtree(tmp_directory_for_each_user)
                 os.remove(download_directory)
                 os.remove(thumbnail)
-                os.remove(tmp_directory_for_each_user)
-            except BaseException:
-                pass
+                shutil.rmtree(Config.DOWNLOAD_LOCATION)
+            except Exception as e:
+                print(e)
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(
                     time_taken_for_download, time_taken_for_upload
