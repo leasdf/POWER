@@ -62,30 +62,28 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
 
 
 @pyrogram.Client.on_message(pyrogram.filters.command(["rmv"]))
-async def get_link(bot, update):
+async def get_l(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id, message_ids=update.message_id, revoke=True
         )
         return
     logger.info(update.from_user)
+    a = await bot.send_message(
+        chat_id=update.chat.id,
+        text=f"Downloading Playlist...",
+        reply_to_message_id=update.message_id,
+    )
     tox = update.text
     path = Path(tox)
     legendcmd = f"rm -rf '{path}'"
-    if os.path.isdir(path):
-        await runcmd(legendcmd)
-        await bot.send_message(
-            chat_id=update.chat.id,
-            text=f"Downloading Playlist...",
-            reply_to_message_id=update.message_id,
-        )
-    else:
-        await runcmd(legendcmd)
-        await bot.send_message(
-            chat_id=update.chat.id,
-            text=f"Downloading Playlist...",
-            reply_to_message_id=update.message_id,
-        )
+    await runcmd(legendcmd)
+    await bot.edit_message_text(
+        text=f"DONE REMOVED",
+        chat_id=update.chat.id,
+        message_id=a.message_id,
+        disable_web_page_preview=True,
+    )
         
         
         
@@ -97,23 +95,21 @@ async def get_link(bot, update):
         )
         return
     logger.info(update.from_user)
+    a = await bot.send_message(
+        chat_id=update.chat.id,
+        text=f"Downloading Playlist...",
+        reply_to_message_id=update.message_id,
+    )
     tox = update.text
     path = Path(tox)
     legendcmd = f"mkdir '{path}'"
-    if os.path.isdir(path):
-        await runcmd(legendcmd)
-        await bot.send_message(
-            chat_id=update.chat.id,
-            text=f"Downloading Playlist...",
-            reply_to_message_id=update.message_id,
-        )
-    else:
-        await runcmd(legendcmd)
-        await bot.send_message(
-            chat_id=update.chat.id,
-            text=f"Downloading Playlist...",
-            reply_to_message_id=update.message_id,
-        )
+    await runcmd(legendcmd)
+    await bot.edit_message_text(
+        text=f"DONE MAKE",
+        chat_id=update.chat.id,
+        message_id=a.message_id,
+        disable_web_page_preview=True,
+    )
 
 
 
