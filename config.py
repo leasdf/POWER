@@ -22,4 +22,4 @@ class Config(object):
     PROCESS_MAX_TIMEOUT = 3600
     DEF_WATER_MARK_FILE = ""
     DATABASE_NAME = "LegendBot"
-    DATABASE_URL = "mongodb+srv://LegendBoy:LegendBoy1234@cluster0.1kerb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    DATABASE_URL = "mongodb+srv://LegendBoy:Krishna_@01_@01@cluster0.pahsr.mongodb.net/?retryWrites=true&w=majority"
